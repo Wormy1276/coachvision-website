@@ -1,5 +1,5 @@
 
-/** Copy to the separate Cloudflare Pages website, NOT CoachVision's routes. */
+/** Cloudflare Pages registration proxy for CoachVision. */
 type Environment = {
   EARLY_ACCESS_PROXY_SECRET?: string;
   EARLY_ACCESS_ENDPOINT?: string;
@@ -12,7 +12,8 @@ type PagesContext = {
 };
 
 const ORIGIN = "https://coachvision-website.pages.dev";
-const ENDPOINT = "https://app.coachvision.tech/api/public/early-access-signup";
+const ENDPOINT =
+  "https://app.coachvision.tech/api/public/early-access-signup";
 
 export async function forwardSignup(
   context: PagesContext,
@@ -20,23 +21,36 @@ export async function forwardSignup(
 ): Promise<Response> {
   const { request, env } = context;
   const headers = { "Cache-Control": "no-store" };
+  const started = Date.now();
+
+  const log = (
+    stage: string,
+    details: Record<string, string | number | boolean> = {}
+  ) => {
+    console.log(
+      JSON.stringify({
+        event: "early_access_forward",
+        stage,
+        ms: Date.now() - started,
+        ...details,
+      })
+    );
+  };
 
   const reply = (status: number, error: string) =>
     Response.json({ error }, { status, headers });
 
-  // Fail closed unless all required production settings are correct.
+  // Keep registration disabled unless all production settings are valid.
   if (
     env.EARLY_ACCESS_ENABLED !== "true" ||
     !env.EARLY_ACCESS_PROXY_SECRET ||
     env.EARLY_ACCESS_ENDPOINT !== ENDPOINT
   ) {
-    // Diagnostic logging: only true/false values, never secrets.
-    console.error("Early access configuration failed", {
+    log("configuration_failed", {
       enabledValid: env.EARLY_ACCESS_ENABLED === "true",
       secretPresent: Boolean(env.EARLY_ACCESS_PROXY_SECRET),
       endpointValid: env.EARLY_ACCESS_ENDPOINT === ENDPOINT,
     });
-
     return reply(503, "Registration is not available yet.");
   }
 
@@ -48,6 +62,7 @@ export async function forwardSignup(
     new URL(request.url).origin !== ORIGIN ||
     request.headers.get("origin") !== ORIGIN
   ) {
+    log("origin_rejected");
     return reply(403, "Request not allowed.");
   }
 
@@ -58,14 +73,14 @@ export async function forwardSignup(
       .trim()
       .toLowerCase() !== "application/json"
   ) {
+    log("content_type_rejected");
     return reply(415, "Send JSON.");
   }
 
-  // Cloudflare's incoming visitor header.
-  // Never forward browser-supplied custom IP/secret headers.
   const ip = request.headers.get("cf-connecting-ip");
 
   if (!ip || ip.length > 45) {
+    log("client_ip_missing");
     return reply(503, "Registration is temporarily unavailable.");
   }
 
@@ -90,6 +105,7 @@ export async function forwardSignup(
   }
 
   if (!ipv4 && !ipv6) {
+    log("client_ip_invalid");
     return reply(503, "Registration is temporarily unavailable.");
   }
 
@@ -99,12 +115,14 @@ export async function forwardSignup(
     length &&
     (!/^\d+$/.test(length) || Number(length) > 8192)
   ) {
+    log("size_rejected");
     return reply(413, "Submission is too large.");
   }
 
   const reader = request.body?.getReader();
 
   if (!reader) {
+    log("body_missing");
     return reply(400, "Invalid submission.");
   }
 
@@ -114,13 +132,13 @@ export async function forwardSignup(
 
     while (true) {
       const next = await reader.read();
-
       if (next.done) break;
 
       size += next.value.byteLength;
 
       if (size > 8192) {
         await reader.cancel();
+        log("size_rejected");
         return reply(413, "Submission is too large.");
       }
 
@@ -135,6 +153,8 @@ export async function forwardSignup(
       offset += chunk.byteLength;
     }
 
+    log("forwarding_started");
+
     const response = await fetcher(ENDPOINT, {
       method: "POST",
       redirect: "error",
@@ -148,28 +168,42 @@ export async function forwardSignup(
       },
     });
 
-    if (
-      !response.headers
-        .get("content-type")
-        ?.includes("application/json")
-    ) {
+    const contentType =
+      response.headers.get("content-type")?.split(";")[0] ?? "none";
+
+    log("upstream_response", {
+      status: response.status,
+      contentType,
+      redirected: response.redirected,
+    });
+
+    if (!response.headers.get("content-type")?.includes("application/json")) {
+      log("upstream_non_json");
       return reply(503, "Registration is temporarily unavailable.");
     }
 
     const responseBody = await response.text();
 
     if (responseBody.length > 4096) {
+      log("upstream_body_too_large");
       return reply(503, "Registration is temporarily unavailable.");
     }
 
-    const result = JSON.parse(responseBody) as {
+    let result: {
       ok?: unknown;
       error?: unknown;
       message?: unknown;
     };
 
-    // Never forward unexpected upstream records or headers.
+    try {
+      result = JSON.parse(responseBody);
+    } catch {
+      log("upstream_json_invalid");
+      return reply(503, "Registration is temporarily unavailable.");
+    }
+
     if (response.status === 200 && result.ok === true) {
+      log("registration_success");
       return Response.json(
         {
           ok: true,
@@ -184,6 +218,8 @@ export async function forwardSignup(
     )
       ? response.status
       : 503;
+
+    log("upstream_rejected", { status });
 
     return Response.json(
       {
@@ -202,7 +238,16 @@ export async function forwardSignup(
         },
       }
     );
-  } catch {
+  } catch (err) {
+    const name = err instanceof Error ? err.name : "unknown";
+
+    log(
+      name === "TimeoutError"
+        ? "timeout"
+        : "network_or_redirect",
+      { errorType: name }
+    );
+
     return reply(503, "Registration is temporarily unavailable.");
   } finally {
     reader.releaseLock();
