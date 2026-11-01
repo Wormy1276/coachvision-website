@@ -157,7 +157,7 @@ export async function forwardSignup(
 
     const response = await fetcher(ENDPOINT, {
       method: "POST",
-      redirect: "error",
+      redirect: "manual",
       signal: AbortSignal.timeout(20000),
       body: bytes,
       headers: {
