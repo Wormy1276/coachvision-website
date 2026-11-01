@@ -239,14 +239,20 @@ export async function forwardSignup(
       }
     );
   } catch (err) {
-    const name = err instanceof Error ? err.name : "unknown";
+  const name = err instanceof Error ? err.name : "unknown";
 
-    log(
-      name === "TimeoutError"
-        ? "timeout"
-        : "network_or_redirect",
-      { errorType: name }
-    );
+  log(
+    name === "TimeoutError"
+      ? "timeout"
+      : "network_or_redirect",
+    {
+      errorType: name,
+      errorMessage:
+        err instanceof Error
+          ? err.message.slice(0, 200)
+          : "unknown",
+    }
+  );
 
     return reply(503, "Registration is temporarily unavailable.");
   } finally {
