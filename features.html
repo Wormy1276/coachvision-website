@@ -53,6 +53,13 @@ section{padding:76px 0}
 .feature-card ul{padding-left:20px;margin:0;color:#d3dfef}
 .feature-card li{padding:3px 0}
 .status{display:inline-flex;align-items:center;border:1px solid #345579;border-radius:999px;padding:4px 10px;color:#9ecaff;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;margin-top:16px}
+.parent-video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:34px}
+.parent-video-card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px;min-width:0}
+.parent-video-card h3{margin:0 0 6px}
+.parent-video-card p{color:var(--muted);font-size:14px;margin:0 0 14px}
+.parent-video-card video{display:block;width:100%;aspect-ratio:9/16;max-height:560px;object-fit:contain;background:#030812;border:1px solid #293b55;border-radius:14px}
+.parent-video-caption{color:#9db6d4;font-size:12px;margin-top:10px}
+
 .status.preparing{border-color:#816b3e;color:#f0d48c;background:#4b3a191c}
 .wide-feature{display:grid;grid-template-columns:1fr 1fr;gap:38px;align-items:center;margin-top:36px}
 .wide-feature.reverse .visual{order:2}
@@ -69,9 +76,9 @@ section{padding:76px 0}
 footer{padding:36px 0;color:#9baec7;font-size:13px}
 .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 footer a{text-decoration:underline;text-underline-offset:3px}
-@media(max-width:820px){.hero-grid,.wide-feature{grid-template-columns:1fr}.wide-feature.reverse .visual{order:0}.hero-panel{max-width:520px;margin:auto}.pill-row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:820px){.hero-grid,.wide-feature{grid-template-columns:1fr}.parent-video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.wide-feature.reverse .visual{order:0}.hero-panel{max-width:520px;margin:auto}.pill-row{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:800px){.links{display:none;position:absolute;top:76px;left:0;right:0;background:#0a192d;padding:20px 24px;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch}.links.open{display:flex}.menu{display:block}}
-@media(max-width:600px){.wrap{padding:0 18px}section{padding:58px 0}.hero{padding:52px 0}.feature-list{grid-template-columns:1fr}.pill-row{gap:8px}.pill{padding:11px 8px;font-size:12px}.feature-card{padding:22px}}
+@media(max-width:600px){.wrap{padding:0 18px}section{padding:58px 0}.hero{padding:52px 0}.feature-list,.parent-video-grid{grid-template-columns:1fr}.pill-row{gap:8px}.pill{padding:11px 8px;font-size:12px}.feature-card{padding:22px}}
 </style>
 </head>
 <body>
@@ -159,6 +166,35 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 <article class="feature-card"><div class="feature-top"><div class="feature-icon">✅</div><div><h3>Availability responses</h3><div class="eyebrow">Quick replies for parents</div></div></div><p>Parents can respond to availability requests for their child, helping coaches organise the squad.</p></article>
 <article class="feature-card"><div class="feature-top"><div class="feature-icon">💬</div><div><h3>Team communication</h3><div class="eyebrow">Keep messages together</div></div></div><p>Support team and parent communication in a shared place, rather than relying on scattered message threads.</p></article>
 <article class="feature-card"><div class="feature-top"><div class="feature-icon">📄</div><div><h3>Shared match information</h3><div class="eyebrow">Keep families informed</div></div></div><p>Make match information and parent-safe reports easier for families to follow.</p></article>
+</div>
+<div class="parent-video-grid" aria-label="Parent app demonstration videos">
+<article class="parent-video-card">
+<h3>Parent Dashboard</h3>
+<p>See the parent home screen, upcoming activity and a quick availability response.</p>
+<video controls playsinline preload="metadata" aria-label="CoachVision parent dashboard demonstration">
+<source src="parent-dashboard.mp4" type="video/mp4">
+Your browser does not support HTML video.
+</video>
+<div class="parent-video-caption">A real CoachVision parent-screen recording with private details obscured</div>
+</article>
+<article class="parent-video-card">
+<h3>Fixtures & Availability</h3>
+<p>See how parents review fixtures and respond Going, Not going or Unsure.</p>
+<video controls playsinline preload="metadata" aria-label="CoachVision parent fixtures and availability demonstration">
+<source src="parent-schedule.mp4" type="video/mp4">
+Your browser does not support HTML video.
+</video>
+<div class="parent-video-caption">A real CoachVision parent-screen recording with private details obscured</div>
+</article>
+<article class="parent-video-card">
+<h3>Team Chat</h3>
+<p>See parent communication, team announcements and the message area.</p>
+<video controls playsinline preload="metadata" aria-label="CoachVision parent team chat demonstration">
+<source src="parent-team-chat.mp4" type="video/mp4">
+Your browser does not support HTML video.
+</video>
+<div class="parent-video-caption">A real CoachVision parent-screen recording with private details obscured</div>
+</article>
 </div>
 <div class="status preparing">Parent experience being prepared for launch</div>
 <div class="callout">The parent-facing experience is being prepared for launch. Exact availability and included features will be confirmed before subscriptions open.</div>
