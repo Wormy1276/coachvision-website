@@ -67,7 +67,7 @@ poster="Screenshot%202026-10-26%20at%2013.01.36.png"
 
       <article class="video-card">
         <div class="cv-portrait">
-          <video controls playsinline preload="metadata"
+          <video class="parent-dashboard-demo" controls playsinline preload="metadata"
             aria-label="CoachVision parent dashboard and communication demonstration">
             <source src="parent-dashboard.mp4" type="video/mp4">
             Your browser does not support video playback.
@@ -162,4 +162,15 @@ poster="Screenshot%202026-10-26%20at%2013.01.36.png"
 <section id="faq"><div class="wrap"><div class="eyebrow" style="text-align:center">Good to know</div><h2 style="text-align:center">Frequently asked questions</h2><div class="faq"><details><summary>Who is CoachVision for?</summary><p>CoachVision is designed for grassroots football coaches and teams, particularly youth football, with tools for the day-to-day running of a squad.</p></details><details><summary>Can parents use CoachVision too?</summary><p>Parent-facing tools are part of the CoachVision product vision, including team updates and attendance. We'll confirm the exact launch features before sign-up opens.</p></details><details><summary>Can I watch the app before joining?</summary><p>Yes. We're building a library of short videos recorded directly from the real app, so you can see how each feature works.</p></details><details><summary>What is the Founder membership price?</summary><p>Founder membership is planned at £69 per year for the first 1,000 members, with that annual price guaranteed for five years from purchase. Founder membership is paid in full annually. Standard membership is planned at £14.99 monthly or £100 for 12 months, paid in four £25 instalments. Final terms will be confirmed before subscriptions open.</p></details><details><summary>How do I get access?</summary><p>Use the Register your interest link. No payment is taken and this does not reserve a membership; we'll share launch and availability information when confirmed.</p></details></div></div></section>
 <section class="cta"><div class="wrap"><div class="eyebrow">Ready for less admin?</div><h2>Make more time for the part you love.</h2><p>Join the early-interest list and be among the first to hear about CoachVision.</p><div class="actions" style="justify-content:center"><a class="btn" href="early-access.html">Get early access →</a><a class="btn alt" href="#videos">Watch feature demos</a></div></div></section></main>
 <footer><div class="wrap foot"><div><strong>CoachVision</strong> · Less admin. More coaching.<br>© <span id="year"></span> CoachVision Technologies</div><div>Questions? <a href="mailto:simon@coachvision.tech">simon@coachvision.tech</a><br><span>Privacy policy and terms to be added before launch.</span></div></div></footer>
-<script>const m=document.getElementById('menu'),n=document.getElementById('links');m.addEventListener('click',()=>{const open=n.classList.toggle('open');m.setAttribute('aria-expanded',open)});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('open');m.setAttribute('aria-expanded','false')}));document.getElementById('year').textContent=new Date().getFullYear();</script></body></html>
+<script>const m=document.getElementById('menu'),n=document.getElementById('links');m.addEventListener('click',()=>{const open=n.classList.toggle('open');m.setAttribute('aria-expanded',open)});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('open');m.setAttribute('aria-expanded','false')}));document.getElementById('year').textContent=new Date().getFullYear();
+
+// Show a frame from the real parent dashboard recording as its video preview.
+const parentPreview=document.querySelector('.parent-dashboard-demo');
+if(parentPreview){
+  parentPreview.addEventListener('loadedmetadata',()=>{
+    if(Number.isFinite(parentPreview.duration)&&parentPreview.duration>0){
+      parentPreview.currentTime=Math.min(0.12,parentPreview.duration);
+    }
+  },{once:true});
+  parentPreview.addEventListener('seeked',()=>parentPreview.pause(),{once:true});
+}</script></body></html>
