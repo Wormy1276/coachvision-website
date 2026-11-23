@@ -59,6 +59,15 @@ section{padding:76px 0}
 .parent-video-card p{color:var(--muted);font-size:14px;margin:0 0 14px}
 .parent-video-card video{display:block;width:100%;aspect-ratio:9/16;max-height:560px;object-fit:contain;background:#030812;border:1px solid #293b55;border-radius:14px}
 .parent-video-caption{color:#9db6d4;font-size:12px;margin-top:10px}
+.parent-phone-showcase{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;align-items:start;margin:38px auto 44px;max-width:980px}
+.parent-phone-item{text-align:center;min-width:0}
+.parent-phone-item h3{margin:0 0 6px}
+.parent-phone-item>p{color:var(--muted);font-size:14px;margin:0 0 16px}
+.parent-phone-frame{position:relative;max-width:265px;margin:0 auto;padding:10px;border:2px solid #526985;border-radius:38px;background:linear-gradient(145deg,#253c59,#050b16 32%,#050b16 75%,#263d5c);box-shadow:0 22px 48px #0008,inset 0 0 0 1px #ffffff18}
+.parent-phone-frame:before{content:"";display:block;position:absolute;z-index:2;top:15px;left:50%;transform:translateX(-50%);width:72px;height:17px;border-radius:0 0 12px 12px;background:#030711}
+.parent-phone-frame video{display:block;width:100%;aspect-ratio:9/18.5;object-fit:contain;background:#020711;border-radius:28px}
+.parent-phone-caption{color:#9db6d4;font-size:12px;margin-top:12px}
+
 
 .status.preparing{border-color:#816b3e;color:#f0d48c;background:#4b3a191c}
 .wide-feature{display:grid;grid-template-columns:1fr 1fr;gap:38px;align-items:center;margin-top:36px}
@@ -76,9 +85,9 @@ section{padding:76px 0}
 footer{padding:36px 0;color:#9baec7;font-size:13px}
 .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 footer a{text-decoration:underline;text-underline-offset:3px}
-@media(max-width:820px){.hero-grid,.wide-feature{grid-template-columns:1fr}.parent-video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.wide-feature.reverse .visual{order:0}.hero-panel{max-width:520px;margin:auto}.pill-row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:820px){.hero-grid,.wide-feature{grid-template-columns:1fr}.parent-phone-showcase{gap:16px}.parent-phone-frame{max-width:230px}.parent-video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.wide-feature.reverse .visual{order:0}.hero-panel{max-width:520px;margin:auto}.pill-row{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:800px){.links{display:none;position:absolute;top:76px;left:0;right:0;background:#0a192d;padding:20px 24px;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch}.links.open{display:flex}.menu{display:block}}
-@media(max-width:600px){.wrap{padding:0 18px}section{padding:58px 0}.hero{padding:52px 0}.feature-list,.parent-video-grid{grid-template-columns:1fr}.pill-row{gap:8px}.pill{padding:11px 8px;font-size:12px}.feature-card{padding:22px}}
+@media(max-width:600px){.wrap{padding:0 18px}section{padding:58px 0}.hero{padding:52px 0}.parent-phone-showcase{grid-template-columns:1fr;gap:30px}.parent-phone-frame{max-width:280px}.feature-list,.parent-video-grid{grid-template-columns:1fr}.pill-row{gap:8px}.pill{padding:11px 8px;font-size:12px}.feature-card{padding:22px}}
 </style>
 </head>
 <body>
@@ -166,6 +175,26 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 <article class="feature-card"><div class="feature-top"><div class="feature-icon">✅</div><div><h3>Availability responses</h3><div class="eyebrow">Quick replies for parents</div></div></div><p>Parents can respond to availability requests for their child, helping coaches organise the squad.</p></article>
 <article class="feature-card"><div class="feature-top"><div class="feature-icon">💬</div><div><h3>Team communication</h3><div class="eyebrow">Keep messages together</div></div></div><p>Support team and parent communication in a shared place, rather than relying on scattered message threads.</p></article>
 <article class="feature-card"><div class="feature-top"><div class="feature-icon">📄</div><div><h3>Shared match information</h3><div class="eyebrow">Keep families informed</div></div></div><p>Make match information and parent-safe reports easier for families to follow.</p></article>
+</div>
+<div class="parent-phone-showcase" aria-label="Parent app videos shown inside phone mockups">
+<article class="parent-phone-item">
+<h3>Parent Dashboard</h3>
+<p>A quick look at the parent home screen</p>
+<div class="parent-phone-frame"><video controls playsinline preload="metadata" aria-label="Parent Dashboard video inside smartphone mockup"><source src="parent-dashboard.mp4" type="video/mp4">Your browser does not support HTML video.</video></div>
+<div class="parent-phone-caption">The parent view, inside the app</div>
+</article>
+<article class="parent-phone-item">
+<h3>Fixtures & Availability</h3>
+<p>Parents respond to upcoming activities</p>
+<div class="parent-phone-frame"><video controls playsinline preload="metadata" aria-label="Fixtures and Availability video inside smartphone mockup"><source src="parent-schedule.mp4" type="video/mp4">Your browser does not support HTML video.</video></div>
+<div class="parent-phone-caption">Simple match and training responses</div>
+</article>
+<article class="parent-phone-item">
+<h3>Team Chat</h3>
+<p>Keep team messages together</p>
+<div class="parent-phone-frame"><video controls playsinline preload="metadata" aria-label="Team Chat video inside smartphone mockup"><source src="parent-team-chat.mp4" type="video/mp4">Your browser does not support HTML video.</video></div>
+<div class="parent-phone-caption">Team communication in one place</div>
+</article>
 </div>
 <div class="parent-video-grid" aria-label="Parent app demonstration videos">
 <article class="parent-video-card">
