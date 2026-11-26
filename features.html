@@ -170,6 +170,141 @@ footer a{text-decoration:underline;text-underline-offset:3px}
   .feature-card>p{font-size:12.5px}
 }
 
+
+/* Final mobile refinements: keep the key feature visuals beside their copy. */
+@media(max-width:600px){
+  #team .wide-feature,
+  #matchday .wide-feature{
+    grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);
+    gap:12px;
+    align-items:start;
+    margin-top:20px;
+  }
+  #team .wide-feature .visual,
+  #matchday .wide-feature .visual{
+    order:0;
+    min-width:0;
+    padding:7px;
+    border-radius:14px;
+  }
+  #team .wide-feature .visual img,
+  #matchday .wide-feature .visual img{
+    width:100%;
+    height:auto;
+    border-radius:9px;
+  }
+  #team .wide-feature .visual-caption,
+  #matchday .wide-feature .visual-caption{
+    font-size:9px;
+    line-height:1.3;
+    padding:6px 2px 0;
+  }
+  #team .wide-feature>div:not(.visual) h3,
+  #matchday .wide-feature>div:not(.visual) h3{
+    font-size:15px;
+    line-height:1.25;
+    margin:0 0 6px;
+  }
+  #team .wide-feature>div:not(.visual) .intro,
+  #matchday .wide-feature>div:not(.visual) .intro{
+    font-size:12px;
+    line-height:1.45;
+  }
+  #team .wide-feature .check-list,
+  #matchday .wide-feature .check-list{
+    margin-top:8px;
+  }
+  #team .wide-feature .check-list li,
+  #matchday .wide-feature .check-list li{
+    font-size:11.5px;
+    line-height:1.35;
+    padding:4px 0 4px 18px;
+  }
+  #team .wide-feature .actions,
+  #matchday .wide-feature .actions{
+    margin-top:10px;
+  }
+  #team .wide-feature .actions .btn,
+  #matchday .wide-feature .actions .btn{
+    width:100%;
+    font-size:11px;
+    line-height:1.3;
+    padding:8px 9px;
+    white-space:normal;
+  }
+
+  /* Parent demos: phone video on the left, explanation on the right. */
+  #parents .parent-phone-showcase{
+    grid-template-columns:1fr;
+    gap:12px;
+    margin:22px auto 24px;
+  }
+  #parents .parent-phone-item{
+    display:grid;
+    grid-template-columns:minmax(82px,30%) minmax(0,1fr);
+    grid-template-areas:"phone title" "phone description" "phone caption";
+    column-gap:13px;
+    row-gap:4px;
+    align-items:center;
+    text-align:left;
+    padding:12px;
+    border:1px solid var(--line);
+    border-radius:14px;
+    background:var(--panel);
+  }
+  #parents .parent-phone-item h3{
+    grid-area:title;
+    align-self:end;
+    font-size:15px;
+    line-height:1.25;
+    margin:0;
+  }
+  #parents .parent-phone-item>p{
+    grid-area:description;
+    align-self:start;
+    font-size:12.5px;
+    line-height:1.4;
+    margin:0;
+  }
+  #parents .parent-phone-frame{
+    grid-area:phone;
+    width:100%;
+    max-width:none;
+    margin:0;
+    padding:5px;
+    border-radius:19px;
+    align-self:center;
+  }
+  #parents .parent-phone-frame:before{
+    top:8px;
+    width:42px;
+    height:9px;
+  }
+  #parents .parent-phone-frame video{
+    width:100%;
+    aspect-ratio:9/18.5;
+    border-radius:14px;
+  }
+  #parents .parent-phone-caption{
+    grid-area:caption;
+    align-self:start;
+    font-size:10.5px;
+    line-height:1.35;
+    margin:0;
+  }
+}
+@media(max-width:360px){
+  #team .wide-feature,
+  #matchday .wide-feature{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:9px}
+  #team .wide-feature>div:not(.visual) h3,
+  #matchday .wide-feature>div:not(.visual) h3{font-size:14px}
+  #team .wide-feature>div:not(.visual) .intro,
+  #matchday .wide-feature>div:not(.visual) .intro{font-size:11.5px}
+  #team .wide-feature .check-list li,
+  #matchday .wide-feature .check-list li{font-size:10.8px;padding-left:16px}
+  #parents .parent-phone-item{grid-template-columns:76px minmax(0,1fr);column-gap:10px;padding:10px}
+}
+
 </style>
 </head>
 <body>
