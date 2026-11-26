@@ -156,6 +156,51 @@ poster="Screenshot%202026-10-26%20at%2013.01.36.png"
     gap: 10px;
   }
 }
+
+/* Compact, readable mobile marketing layout. Desktop remains unchanged. */
+@media(max-width:600px){
+ .hero{padding:26px 0 30px}
+ section{padding:36px 0}
+ section h2{font-size:clamp(23px,6.3vw,30px);line-height:1.18;margin:8px 0 10px}
+ section .eyebrow{font-size:10px;letter-spacing:.13em}
+ section .intro,.hero-details .lead{font-size:15px;line-height:1.55}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:20px}
+ .grid .tile{min-width:0;padding:13px;border-radius:12px}
+ .grid .tile .emoji{font-size:21px}
+ .grid .tile h3{font-size:15px;margin:7px 0 5px;overflow-wrap:anywhere}
+ .grid .tile p{font-size:13px;line-height:1.45}
+ .cv-video-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px}
+ .cv-video-grid .video-card{border-radius:12px}
+ .cv-video-grid .video-body{padding:10px}
+ .cv-video-grid .video-body h3{font-size:15px;line-height:1.25;overflow-wrap:normal}
+ .cv-video-grid .video-body p{font-size:13px;line-height:1.4}
+ .cv-video-grid .coming{font-size:9px;letter-spacing:.04em;margin-bottom:4px}
+ .cv-video-grid .video-card:last-child:nth-child(odd){grid-column:1/-1;width:calc((100% - 12px)/2);justify-self:center}
+ .cv-portrait{border-radius:10px}
+ .price-card{padding:20px 16px;margin-top:20px;border-radius:17px;font-size:14px}
+ .price-card h3{font-size:18px;margin:12px 0}
+ .price-card .price{font-size:45px}
+ .price-card ul{line-height:1.6;margin:10px auto 16px;padding-left:17px}
+ .price-card .price-tag{font-size:10px}
+ .pricing-options{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+ .pricing-options .tile{padding:12px 8px;min-height:0;border-radius:12px}
+ .pricing-options .tile h3{font-size:14px;margin:0 0 8px}
+ .pricing-options .price-row{gap:3px;min-height:0;flex-direction:column;align-items:center}
+ .pricing-options .price-row span:first-child{font-size:clamp(23px,7vw,31px)!important}
+ .pricing-options .price-row span:last-child{font-size:12px}
+ .pricing-options .tile p{font-size:12px;line-height:1.45;padding-top:8px}
+ .about{gap:16px}
+ .quote{padding:18px;font-size:18px;line-height:1.45;border-radius:14px}
+ .faq{margin-top:15px}
+ .faq details{padding:11px 0}
+ .faq summary{font-size:15px;align-items:center}
+ .faq p,.cta p{font-size:14px;line-height:1.5}
+ .actions{gap:8px}
+ .actions .btn{font-size:14px;padding:10px 14px;min-height:44px}
+ .small,.fine{font-size:12px;line-height:1.5}
+ footer{padding:22px 0}
+}
+@media(max-width:340px){.grid{gap:8px}.grid .tile{padding:10px}.grid .tile h3{font-size:14px}.cv-video-grid .video-body{padding:8px}}
 </style>
 
 <section id="pricing"><div class="wrap"><div class="eyebrow" style="text-align:center">Simple, coach-friendly pricing</div><h2 style="text-align:center">A lot of support. One simple price.</h2><p class="intro" style="text-align:center;margin-left:auto;margin-right:auto">We're preparing CoachVision for launch. Register your interest to hear when memberships open.</p>
