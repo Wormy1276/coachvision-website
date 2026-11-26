@@ -12,6 +12,23 @@
 
 /* Keep the logo and mobile navigation inside narrow viewports. */
 @media(max-width:800px){header .nav{gap:12px}header .brand{flex:0 1 auto;min-width:0}header .brand img{width:auto!important;max-width:100%;height:auto!important;max-height:40px}header .menu{flex:0 0 auto;white-space:nowrap;min-height:44px;font-size:14px;padding:6px 10px}}
+
+/* Mobile hero: put the real app dashboard alongside the headline. */
+@media(max-width:800px){
+ .hero{padding:36px 0 48px}
+ .hero-grid{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:20px 12px;align-items:center}
+ .hero-copy{display:contents}
+ .hero-heading{grid-column:1;grid-row:1;min-width:0}
+ .hero-heading .eyebrow{font-size:10px;line-height:1.5;letter-spacing:.12em}
+ .hero-heading h1{font-size:clamp(25px,7.2vw,48px);line-height:1.1;letter-spacing:-.055em;margin:12px 0 0;overflow-wrap:normal}
+ .hero-art{grid-column:2;grid-row:1;min-width:0;width:100%;max-width:260px;padding:6px;border-radius:16px;margin:auto}
+ .hero-art .real-app-screen{width:100%;border-radius:12px}
+ .hero-art .note{font-size:9px;line-height:1.3;margin-top:6px}
+ .hero-details{grid-column:1/-1;grid-row:2;min-width:0}
+ .hero-details .lead{font-size:17px;margin:0}
+ .hero-details .actions{margin-top:20px}
+}
+@media(max-width:360px){.hero-heading h1{font-size:clamp(22px,7vw,25px)}.hero-grid{gap:16px 9px}}
 </style></head><body>
 <header><div class="wrap nav"><a class="brand" href="#home" aria-label="CoachVision home">
   <img
@@ -20,7 +37,7 @@
     style="height:48px;width:auto;display:block;"
   >
 </a><button class="menu" id="menu" aria-expanded="false" aria-controls="links">☰ Menu</button><nav class="links" id="links" aria-label="Main navigation"><a href="features.html">Features</a><a href="#videos">Watch it work</a><a href="#pricing">Pricing</a><a href="#about">About</a><a href="#faq">FAQs</a><a class="btn" href="early-access.html">Register your interest</a></nav></div></header>
-<main><div class="hero" id="home"><div class="wrap hero-grid"><div><div class="eyebrow">Built for grassroots football coaches</div><h1>Less admin.<br><em>More coaching.</em></h1><p class="lead">Fixtures, matchday, training, player development and parent communication — together in one place, with powerful AI to make coaching simpler.</p><div class="actions"><a class="btn" href="#videos">See CoachVision in action ↗</a><a class="btn alt" href="#pricing">View pricing</a></div><p class="fine">Designed around the realities of grassroots football. Watch genuine recordings of CoachVision in action below.</p></div><div class="hero-art" aria-label="Actual CoachVision coach dashboard screenshot"><img class="real-app-screen" src="coachvision-dashboard.png" alt="CoachVision app showing coach dashboard, kick-off time, attendance, voice assistant and quick actions" loading="eager"><div class="note">The real CoachVision coach dashboard</div></div></div></div>
+<main><div class="hero" id="home"><div class="wrap hero-grid"><div class="hero-copy"><div class="hero-heading"><div class="eyebrow">Built for grassroots football coaches</div><h1>Less admin.<br><em>More coaching.</em></h1></div><div class="hero-details"><p class="lead">Fixtures, matchday, training, player development and parent communication — together in one place, with powerful AI to make coaching simpler.</p><div class="actions"><a class="btn" href="#videos">See CoachVision in action ↗</a><a class="btn alt" href="#pricing">View pricing</a></div><p class="fine">Designed around the realities of grassroots football. Watch genuine recordings of CoachVision in action below.</p></div></div><div class="hero-art" aria-label="Actual CoachVision coach dashboard screenshot"><img class="real-app-screen" src="coachvision-dashboard.png" alt="CoachVision app showing coach dashboard, kick-off time, attendance, voice assistant and quick actions" loading="eager"><div class="note">The real CoachVision coach dashboard</div></div></div></div>
 <section id="features"><div class="wrap"><div class="eyebrow">Everything in one place</div><h2>One app. A whole lot less to manage.</h2><p class="intro">From preparing your next session to keeping parents informed, CoachVision is built around the jobs coaches actually do every week.</p><div class="grid"><article class="tile"><div class="emoji">🏆</div><h3>Matchday Centre</h3><p>Manage matches, record goals and substitutions, and keep match events organised.</p></article><article class="tile"><div class="emoji">📅</div><h3>Fixtures & team sheets</h3><p>Keep upcoming games, attendance and team selections together.</p></article><article class="tile"><div class="emoji">⚽</div><h3>Training & sessions</h3><p>Plan sessions and explore coaching activities, with AI-assisted workflows.</p></article><article class="tile"><div class="emoji">👥</div><h3>Players & development</h3><p>Keep player profiles and coaching observations in one place.</p></article><article class="tile"><div class="emoji">📣</div><h3>Parents & attendance</h3><p>Help families stay informed and make attendance easier to manage.</p></article><article class="tile"><div class="emoji">✨</div><h3>CoachVision AI</h3><p>Spend less time on routine admin and more time focusing on your players.</p></article></div></div></section>
 
 <section class="section-alt" id="videos">
